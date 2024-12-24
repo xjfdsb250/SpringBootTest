@@ -18,8 +18,13 @@ import org.springframework.stereotype.Service;
  * @author hurenjie
  * @since 2024-12-24
  */
-
+@AllArgsConstructor
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements ISysUserService {
+    private final ISysUserService userService;
 
+    @GetMapping("/get/{id}")
+    public R user(@PathVariable("id") Integer id) {
+        return R.ok(userService.getById(id));
+    }
 }
