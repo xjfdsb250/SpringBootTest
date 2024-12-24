@@ -1,19 +1,14 @@
 package org.swust.springboottest.entity;
 
-
 import lombok.*;
 import lombok.experimental.Accessors;
-
 import java.io.Serializable;
 
 /**
  * 响应信息主体
  *
  * @param <T>
- * @author
  */
-@Setter
-@Getter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,21 +16,16 @@ import java.io.Serializable;
 public class R<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 返回标记：成功标记=0，失败标记=1
-     */
-
+    @Getter
+    @Setter
     private int code;
 
-    /**
-     * 返回信息
-     */
+    @Getter
+    @Setter
     private String msg;
 
-    /**
-     * 数据
-     */
-
+    @Getter
+    @Setter
     private T data;
 
     public static <T> R<T> ok() {
