@@ -28,7 +28,8 @@ public class GeneratorCode {
                 )
                 .strategyConfig(builder -> {
                     builder.addInclude(
-                                    "sys_user"
+                                    "sys_user",
+                                    "sys_department"
                             ) // 设置需要生成的表名
                             .entityBuilder()
                             .enableLombok() // 启用 Lombok

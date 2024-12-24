@@ -1,5 +1,7 @@
 package org.swust.springboottest.mapper;
 
+import lombok.AllArgsConstructor;
+import org.apache.ibatis.annotations.Mapper;
 import org.swust.springboottest.entity.SysUser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -11,6 +13,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author hurenjie
  * @since 2024-12-24
  */
+
+@Mapper
 public interface SysUserMapper extends BaseMapper<SysUser> {
 
 }
+

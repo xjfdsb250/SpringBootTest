@@ -5,64 +5,63 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
-
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
  * <p>
- * 用户表
+ * 部门表
  * </p>
  *
  * @author hurenjie
  * @since 2024-12-24
  */
-@Data
-@TableName("sys_user")
-public class SysUser implements Serializable {
+@Getter
+@Setter
+@TableName("sys_department")
+public class SysDepartment implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户id
+     * 部门id
      */
-    @TableId(value = "user_id", type = IdType.AUTO)
-    private Integer userId;
+    @TableId(value = "dept_id", type = IdType.AUTO)
+    private Integer deptId;
 
     /**
-     * 用户姓名
+     * 部门名称
      */
     @TableField("name")
     private String name;
 
     /**
-     * 用户年龄
+     * 部分优先级
      */
-    @TableField("age")
-    private Integer age;
+    @TableField("sort")
+    private Integer sort;
 
     /**
-     * 用户性别
+     * 父部门id
      */
-    @TableField("sex")
-    private Byte sex;
+    @TableField("parent_id")
+    private Long parentId;
 
     /**
-     * 用户电话号
-     */
-    @TableField("phone")
-    private String phone;
-
-    /**
-     * 用户部门
-     */
-    @TableField("dept_id")
-    private Long deptId;
-
-    /**
-     * 用户邮箱
+     * 电子邮箱
      */
     @TableField("email")
     private String email;
+
+    /**
+     * leader的id
+     */
+    @TableField("leader_user_id")
+    private Long leaderUserId;
+
+    /**
+     * 部门电话
+     */
+    @TableField("phone")
+    private String phone;
 }
