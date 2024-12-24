@@ -5,6 +5,9 @@ import com.baomidou.mybatisplus.generator.config.OutputFile;
 import java.nio.file.Paths;
 import java.util.Collections;
 
+/**
+ * 代码生成器
+ */
 public class GeneratorCode {
     public static void main(String[] args) {
         FastAutoGenerator.create("jdbc:mysql://127.0.0.1:3306/sys_monitor?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false",
