@@ -1,5 +1,6 @@
 package org.swust.springboottest.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.swust.springboottest.entity.SysDepartment;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -9,8 +10,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author hurenjie
- * @since 2024-12-24
+ * @since 2024-12-25
  */
+@Mapper
 public interface SysDepartmentMapper extends BaseMapper<SysDepartment> {
 
 }
