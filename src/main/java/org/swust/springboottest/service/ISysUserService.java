@@ -1,9 +1,5 @@
 package org.swust.springboottest.service;
 
-import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.swust.springboottest.entity.R;
 import org.swust.springboottest.entity.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 
