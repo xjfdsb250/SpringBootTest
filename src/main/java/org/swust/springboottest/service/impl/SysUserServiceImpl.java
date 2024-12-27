@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.swust.springboottest.dto.SysUserDto;
+import org.swust.springboottest.dto.CountDept;
 import org.swust.springboottest.entity.SysUser;
 import org.swust.springboottest.entity.vo.QSysUser;
 import org.swust.springboottest.mapper.SysDepartmentMapper;
@@ -14,6 +15,7 @@ import org.swust.springboottest.mapper.SysUserMapper;
 import org.swust.springboottest.service.ISysUserService;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -35,8 +37,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     }
 
     @Override
-    public boolean updateRoleId(SysUser user) {
-        return baseMapper.updateRoleId(user) > 0;
+    public boolean updateRoleById(SysUser user) {
+        return baseMapper.updateRoleById(user) > 0;
     }
 
     @Override
@@ -63,6 +65,11 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Override
     public IPage<SysUserDto> pageUser(Page page, QSysUser qSysUser) {
         return baseMapper.pageUser(page, qSysUser);
+    }
+
+    @Override
+    public List<CountDept> countNumByDeptId() {
+        return baseMapper.countNumByDeptId();
     }
 
 }
