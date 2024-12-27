@@ -1,7 +1,9 @@
 package org.swust.springboottest;
+
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
+
 import java.nio.file.Paths;
 import java.util.Collections;
 
@@ -28,7 +30,7 @@ public class GeneratorCode {
                 )
                 .strategyConfig(builder -> {
                     builder.addInclude(
-                                    "sys_department"
+                                    "sys_role"
                             ) // 设置需要生成的表名
                             .entityBuilder()
                             .enableLombok() // 启用 Lombok

@@ -1,11 +1,15 @@
 package org.swust.springboottest.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.swust.springboottest.dto.SysUserDto;
 import org.swust.springboottest.entity.R;
 import org.swust.springboottest.entity.SysUser;
+import org.swust.springboottest.entity.vo.QSysUser;
 import org.swust.springboottest.service.ISysUserService;
 
 /**
@@ -17,7 +21,6 @@ import org.swust.springboottest.service.ISysUserService;
 @RestController
 @RequestMapping("/user")
 public class SysUserController {
-
     @Autowired
     private ISysUserService userService;
 
@@ -29,8 +32,13 @@ public class SysUserController {
      */
     @GetMapping("/{id}")
     public R<SysUser> user(@PathVariable Integer id) {
+
         SysUser user = userService.getById(id);
+        if (user == null) {
+            return R.failed("用户不存在");
+        }
         return R.ok(user);
+
     }
 
     /**
@@ -40,26 +48,68 @@ public class SysUserController {
      * @return success/fail
      */
     @PostMapping("/add")
-    public R add(@RequestBody SysUser user) {
+    public R<Integer> add(@Valid @RequestBody SysUser user) {
         userService.save(user);
         return R.ok(user.getUserId());
     }
 
+    /**
+     * 删除用户
+     *
+     * @param id ID
+     * @return success/fail
+     */
     @DeleteMapping("/{id}")
-    public R delete(@PathVariable Integer id) {
+    public R<Boolean> delete(@PathVariable Integer id) {
         boolean result = userService.removeById(id);
         return R.ok(result);
     }
 
+    /**
+     * 更新用户信息
+     *
+     * @param user 用户信息
+     * @return success/fail
+     */
     @PutMapping("/update")
-    public R update(@RequestBody SysUser user) {
+    public R<Boolean> update(@Valid @RequestBody SysUser user) {
         boolean result = userService.updateById(user);
         return R.ok(result);
     }
 
+    /**
+     * 更新用户姓名
+     *
+     * @param user 用户信息
+     * @return success/fail
+     */
     @PutMapping("/editName")
-    public R editName(@RequestBody SysUser user) {
+    public R<Boolean> editName(@Valid @RequestBody SysUser user) {
         boolean result = userService.updateName(user);
         return result ? R.ok(true) : R.failed("更新失败");
+    }
+
+    /**
+     * 分页查询用户
+     *
+     * @param page     分页对象
+     * @param qSysUser 用户查询对象
+     * @return 用户分页
+     */
+    @GetMapping("/page")
+    public R<IPage<SysUserDto>> getUserPage(Page page, QSysUser qSysUser) {
+        return R.ok(userService.pageUser(page, qSysUser));
+    }
+
+    /**
+     * 更新用户角色
+     *
+     * @param user 用户信息
+     * @return success/fail
+     */
+    @PutMapping("/updateRoleId")
+    public R<Boolean> updateRoleId(@Valid @RequestBody SysUser user) {
+        boolean result = userService.updateRoleId(user);
+        return R.ok(result);
     }
 }
