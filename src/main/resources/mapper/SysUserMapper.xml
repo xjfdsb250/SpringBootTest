@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.swust.springboottest.mapper.SysUserMapper">
-
+    <select id="pageUser" resultType="org.swust.springboottest.dto.SysUserDto">
+        select u.*, dept.dept_name , r.role_name from sys_user u
+        left join sys_dept dept on u.dept_id = dept.dept_id
+        left join sys_role r on u.role_id = r.role_id
+        <where>
+            <if test="param.username != null and param.username != ''">
+                and u.username like concat('%', #{param.username}, '%')
+            </if>
+            <if test="param.realName != null and param.realName != ''">
+                and u.real_name like concat('%', #{realName}, '%')
+            </if>
+            <if test="param.telephone != null and param.telephone != ''">
+                and u.telephone like concat('%', #{telephone}, '%')
+            </if>
+            <if test="param.status != null">
+                and u.status = #{status}
+            </if>
+            <if test="param.deptId != null">
+                and u.dept_id = #{param.deptId}
+            </if>
+            <if test="param.roleId != null">
+                and u.role_id = #{param.roleId}
+            </if>
+        </where>
+    </select>
 </mapper>

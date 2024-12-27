@@ -70,8 +70,8 @@ public class R<T> implements Serializable {
 
     private static <T> R<T> restResult(T data, int code, String msg) {
         R<T> apiResult = new R<>();
-        apiResult.setCode(code);
         apiResult.setData(data);
+        apiResult.setCode(code);
         apiResult.setMsg(msg);
         return apiResult;
     }

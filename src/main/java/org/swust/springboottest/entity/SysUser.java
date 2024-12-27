@@ -1,12 +1,10 @@
 package org.swust.springboottest.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 
 import java.io.Serializable;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,18 +33,21 @@ public class SysUser implements Serializable {
      * 用户姓名
      */
     @TableField("name")
+    @NotNull
     private String name;
 
     /**
      * 用户年龄
      */
     @TableField("age")
+    @NotNull
     private Integer age;
 
     /**
      * 用户性别
      */
     @TableField("sex")
+    @NotNull
     private Byte sex;
 
     /**
@@ -59,6 +60,7 @@ public class SysUser implements Serializable {
      * 用户部门
      */
     @TableField("dept_id")
+    @NotNull
     private Long deptId;
 
     /**
@@ -66,5 +68,12 @@ public class SysUser implements Serializable {
      */
     @TableField("email")
     private String email;
+
+    /**
+     * 删除标识
+     */
+    @TableField("del_flag")
+    @TableLogic
+    private Integer delFlag;
 
 }

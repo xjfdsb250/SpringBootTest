@@ -1,7 +1,9 @@
 package org.swust.springboottest;
+
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
+
 import java.nio.file.Paths;
 import java.util.Collections;
 

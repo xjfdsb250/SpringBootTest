@@ -1,10 +1,10 @@
 package org.swust.springboottest.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
+
 import java.io.Serializable;
+
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,24 +27,26 @@ public class SysDepartment implements Serializable {
      * 部门id
      */
     @TableId(value = "dept_id", type = IdType.AUTO)
-    private Integer deptId;
+    private Integer deptId ;
 
     /**
      * 部门名称
      */
     @TableField("name")
+    @NotNull
     private String name;
 
     /**
      * 部分优先级
      */
     @TableField("sort")
-    private Integer sort;
+    private Integer sort = 0;
 
     /**
      * 父部门id
      */
     @TableField("parent_id")
+    @NotNull
     private Long parentId;
 
     /**
@@ -57,6 +59,7 @@ public class SysDepartment implements Serializable {
      * leader的id
      */
     @TableField("leader_user_id")
+    @NotNull
     private Long leaderUserId;
 
     /**
@@ -64,4 +67,17 @@ public class SysDepartment implements Serializable {
      */
     @TableField("phone")
     private String phone;
+
+    /**
+     * 部门人数
+     */
+    @TableField("number")
+    private Integer number = 0;
+
+    /**
+     * 删除标识
+     */
+    @TableField("del_flag")
+    @TableLogic
+    private Integer delFlag;
 }
