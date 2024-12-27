@@ -3,14 +3,16 @@ package org.swust.springboottest.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.swust.springboottest.dto.CountDept;
 import org.swust.springboottest.dto.SysUserDto;
 import org.swust.springboottest.entity.R;
 import org.swust.springboottest.entity.SysUser;
 import org.swust.springboottest.entity.vo.QSysUser;
 import org.swust.springboottest.service.ISysUserService;
+
+import java.util.List;
 
 /**
  * 用户表 前端控制器
@@ -107,9 +109,36 @@ public class SysUserController {
      * @param user 用户信息
      * @return success/fail
      */
-    @PutMapping("/updateRoleId")
-    public R<Boolean> updateRoleId(@Valid @RequestBody SysUser user) {
-        boolean result = userService.updateRoleId(user);
+    @PutMapping("/updateRoleById")
+    public R<Boolean> updateRoleById(@Valid @RequestBody SysUser user) {
+        boolean result = userService.updateRoleById(user);
         return R.ok(result);
     }
+
+    /**
+     * 统计部门人数
+     *
+     * @return 部门人数
+     */
+    @GetMapping("/countNumByDeptId")
+    public R<List<CountDept>> countNumByDeptId() {
+        return R.ok(userService.countNumByDeptId());
+    }
+
+    /**
+     * 重置密码
+     *
+     * @param userId 用户ID
+     * @return success/fail
+     */
+    @PutMapping("/resetPassword")
+    public R<Boolean> resetPassword(Integer userId) {
+        boolean result = userService.resetPassword(userId);
+        if (result) {
+            return R.ok(true, "重置密码成功");
+        } else {
+            return R.failed("重置密码失败");
+        }
+    }
+
 }

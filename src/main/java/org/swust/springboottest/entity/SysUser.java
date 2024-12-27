@@ -1,13 +1,10 @@
 package org.swust.springboottest.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-
-import java.io.Serializable;
-
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -76,7 +73,16 @@ public class SysUser implements Serializable {
     @TableLogic
     private Integer delFlag;
 
+    /**
+     * 用户角色
+     */
     @TableField("role_id")
     private Integer roleId;
+
+    /**
+     * 用户密码
+     */
+    @TableField("password")
+    private String password;
 
 }

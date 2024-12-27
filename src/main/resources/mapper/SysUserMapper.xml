@@ -23,4 +23,12 @@
             </if>
         </where>
     </select>
+
+    <select id="countNumByDeptId" resultType="org.swust.springboottest.dto.CountDept">
+        select u.dept_id, count(*) count, dept.name dept_name
+        from sys_user u
+        left join sys_department dept
+        on u.dept_id = dept.dept_id
+        group by dept_id
+    </select>
 </mapper>
