@@ -1,7 +1,6 @@
 package org.swust.springboottest.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.swust.springboottest.entity.R;
 import org.swust.springboottest.entity.SysDepartment;

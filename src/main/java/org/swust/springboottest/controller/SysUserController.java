@@ -3,7 +3,7 @@ package org.swust.springboottest.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.swust.springboottest.dto.CountDept;
 import org.swust.springboottest.dto.SysUserDto;
@@ -22,9 +22,9 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/user")
+@AllArgsConstructor
 public class SysUserController {
-    @Autowired
-    private ISysUserService userService;
+    private final ISysUserService userService;
 
     /**
      * 通过ID查询用户信息

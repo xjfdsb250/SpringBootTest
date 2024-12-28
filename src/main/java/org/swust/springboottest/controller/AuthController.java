@@ -3,10 +3,10 @@ package org.swust.springboottest.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,18 +27,17 @@ import java.util.Map;
  * 登录控制器
  */
 @RestController
+@AllArgsConstructor
 @Slf4j
 public class AuthController {
 
     private final Logger logger = LogManager.getLogger(getClass());
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
 
-    @Autowired
-    private JwtTokenProvider jwtTokenProvider;
+    private final JwtTokenProvider jwtTokenProvider;
 
-    private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     /**
      * 登录
@@ -48,7 +47,7 @@ public class AuthController {
      * @return token
      */
     @PostMapping(value = "/login")
-    public R authenticate(@Valid @RequestParam("username") @NotBlank(message = "用户名不能为空！") String username, @RequestParam("password") @NotBlank(message = "密码不能为空！") String password) {
+    public R<Map<String, Object>> authenticate(@Valid @RequestParam("username") @NotBlank(message = "用户名不能为空！") String username, @RequestParam("password") @NotBlank(message = "密码不能为空！") String password) {
         logger.debug("用户 {} 开始登录。", username);
 
         try {
@@ -75,7 +74,7 @@ public class AuthController {
      * @return token
      */
     @PostMapping(value = "/refresh")
-    public R refreshToken(HttpServletRequest request) {
+    public R<Map<String, Object>> refreshToken(HttpServletRequest request) {
         String currToken = jwtTokenProvider.resolveToken(request);
         String newToken = jwtTokenProvider.refreshToken(currToken);
         Map<String, Object> model = new HashMap<>();

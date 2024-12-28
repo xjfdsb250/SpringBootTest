@@ -4,9 +4,9 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Getter;
 import lombok.Setter;
 import org.swust.springboottest.entity.SysUser;
-import lombok.Data;
 
-@Data
+@Setter
+@Getter
 public class SysUserDto extends SysUser {
     /**
      * 部门名称
