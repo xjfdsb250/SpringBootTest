@@ -33,13 +33,26 @@ public class SysUserController {
      * @return 用户信息
      */
     @GetMapping("/{id}")
-    public R<SysUser> user(@PathVariable Integer id) {
+    public R<SysUser> getUserById(@PathVariable Integer id) {
 
         SysUser user = userService.getById(id);
         if (user == null) {
             return R.failed("用户不存在");
         }
         return R.ok(user);
+
+    }
+
+    /**
+     * 检查用户名是否存在
+     *
+     * @param name 用户名
+     * @return 用户信息
+     */
+    @GetMapping("/name/{name}")
+    public R<Boolean> checkUserExist(@PathVariable String name) {
+        boolean result = userService.checkUserExist(name);
+        return R.ok(result);
 
     }
 
@@ -51,8 +64,12 @@ public class SysUserController {
      */
     @PostMapping("/add")
     public R<Integer> add(@Valid @RequestBody SysUser user) {
-        userService.save(user);
-        return R.ok(user.getUserId());
+        Integer res = userService.addUser(user);
+        if (res == 1)
+            return R.ok(user.getUserId());
+        if (res == 0)
+            return R.failed("用户名已存在");
+        return R.failed("添加失败");
     }
 
     /**

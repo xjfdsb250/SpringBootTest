@@ -24,8 +24,7 @@ public interface ISysUserService extends IService<SysUser> {
 
     boolean updateRoleById(SysUser user);
 
-    @Override
-    boolean save(SysUser entity);
+    Integer addUser(SysUser entity);
 
     @Override
     boolean removeById(Serializable id);
@@ -35,4 +34,8 @@ public interface ISysUserService extends IService<SysUser> {
     List<CountDept> countNumByDeptId();
 
     boolean resetPassword(Integer userId);
+
+    SysUser getByName(String name);
+
+    boolean checkUserExist(String name);
 }

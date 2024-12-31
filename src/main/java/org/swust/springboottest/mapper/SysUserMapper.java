@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.swust.springboottest.dto.CountDept;
 import org.swust.springboottest.dto.SysUserDto;
@@ -36,5 +37,8 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
 
     @Update("update sys_user set password = #{password} where user_id = #{userId}")
     int resetPassword(Integer userId, String password);
+
+    @Select("select count(*) from sys_user where name = #{name}")
+    int checkUserExist(String name);
 }
 

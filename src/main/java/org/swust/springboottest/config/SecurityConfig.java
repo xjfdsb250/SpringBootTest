@@ -54,7 +54,7 @@ public class SecurityConfig {
                 // 前后端分离是无状态的，不需要session了，直接禁用。
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
                         // 允许所有OPTIONS请求
-                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll().requestMatchers(url, url1, url2).permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll().requestMatchers(url, url1, url2, url3, url4).permitAll()
                         // 允许直接访问授权登录接口
                         .requestMatchers(HttpMethod.POST, "/login").permitAll().requestMatchers(HttpMethod.POST, "/refresh").permitAll()
                         // 允许 SpringMVC 的默认错误地址匿名访问

@@ -47,12 +47,18 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     @Override
     @Transactional
-    public boolean save(SysUser entity) {
+    public Integer addUser(SysUser entity) {
+        boolean check = checkUserExist(entity.getName());
+        if (check) {
+            return 0;
+        }
         boolean result = super.save(entity);
         if (result) {
             sysDepartmentMapper.editNumber(1, entity.getDeptId());
+            return 1;
         }
-        return result;
+        return 2;
+
     }
 
     @Override
@@ -80,6 +86,16 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public boolean resetPassword(Integer userId) {
         String password = ENCODER.encode("123456");
         return baseMapper.resetPassword(userId, password) > 0;
+    }
+
+    @Override
+    public SysUser getByName(String name) {
+        return null;
+    }
+
+    @Override
+    public boolean checkUserExist(String name) {
+        return baseMapper.checkUserExist(name) > 0;
     }
 
 }
