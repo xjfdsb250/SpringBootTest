@@ -46,15 +46,15 @@ public class SecurityConfig {
         String url = "/swagger-ui/**";
         String url1 = "swagger-resources/**";
         String url2 = "/v3/api-docs/**";
-        String url3 = "user/**";
-
+        String url3 = "/user/**";
+        String url4 = "/dept/**";
         http.httpBasic(AbstractHttpConfigurer::disable).csrf(AbstractHttpConfigurer::disable).formLogin(AbstractHttpConfigurer::disable).logout(AbstractHttpConfigurer::disable)
                 // 设置异常的EntryPoint，如果不设置，默认使用Http403ForbiddenEntryPoint
 //                .exceptionHandling(exceptions -> exceptions.authenticationEntryPoint(invalidAuthenticationEntryPoint))
                 // 前后端分离是无状态的，不需要session了，直接禁用。
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
                         // 允许所有OPTIONS请求
-                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll().requestMatchers(url, url1, url2, url3).permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll().requestMatchers(url, url1, url2).permitAll()
                         // 允许直接访问授权登录接口
                         .requestMatchers(HttpMethod.POST, "/login").permitAll().requestMatchers(HttpMethod.POST, "/refresh").permitAll()
                         // 允许 SpringMVC 的默认错误地址匿名访问

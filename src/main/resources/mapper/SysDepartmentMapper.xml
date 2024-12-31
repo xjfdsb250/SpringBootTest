@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.swust.springboottest.mapper.SysDepartmentMapper">
-
+    <select id="pageDept" resultType="org.swust.springboottest.dto.SysDepartmentDto">
+        select dept.*, u.name leader_name from sys_department dept
+        left join sys_user u on dept.leader_user_id = u.user_id
+        <where>
+            <if test="param.deptName != null and param.deptName != ''">
+                and dept.name like concat('%', #{param.deptName}, '%')
+            </if>
+            <if test="param.num != null">
+                and dept.number = #{param.num}
+            </if>
+        </where>
+    </select>
 </mapper>

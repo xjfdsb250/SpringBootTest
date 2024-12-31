@@ -1,9 +1,13 @@
 package org.swust.springboottest.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.swust.springboottest.dto.SysDepartmentDto;
 import org.swust.springboottest.entity.R;
 import org.swust.springboottest.entity.SysDepartment;
+import org.swust.springboottest.entity.vo.QSysDepartment;
 import org.swust.springboottest.service.ISysDepartmentService;
 
 /**
@@ -64,5 +68,17 @@ public class SysDepartmentController {
     public R<Boolean> update(@RequestBody SysDepartment dept) {
         boolean result = deptService.updateById(dept);
         return R.ok(result);
+    }
+
+    /**
+     * 分页查询部门信息
+     *
+     * @param page     分页对象
+     * @param qSysDepartment 查询条件
+     * @return 部门信息
+     */
+    @GetMapping("/page")
+    public R<IPage<SysDepartmentDto>> getUserPage(Page page, QSysDepartment qSysDepartment) {
+        return R.ok(deptService.pageDept(page, qSysDepartment));
     }
 }
