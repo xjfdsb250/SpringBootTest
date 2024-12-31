@@ -1,12 +1,11 @@
 package org.swust.springboottest.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-
-import java.io.Serializable;
-
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -27,7 +26,7 @@ public class SysDepartment implements Serializable {
      * 部门id
      */
     @TableId(value = "dept_id", type = IdType.AUTO)
-    private Integer deptId ;
+    private Integer deptId;
 
     /**
      * 部门名称
@@ -46,13 +45,13 @@ public class SysDepartment implements Serializable {
      * 父部门id
      */
     @TableField("parent_id")
-    @NotNull
     private Long parentId;
 
     /**
      * 电子邮箱
      */
     @TableField("email")
+    @NotNull
     private String email;
 
     /**
@@ -72,7 +71,7 @@ public class SysDepartment implements Serializable {
      * 部门人数
      */
     @TableField("number")
-    private Integer number = 0;
+    private Integer number = 1;
 
     /**
      * 删除标识
