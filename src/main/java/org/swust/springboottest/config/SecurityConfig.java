@@ -46,7 +46,7 @@ public class SecurityConfig {
         String url = "/swagger-ui/**";
         String url1 = "swagger-resources/**";
         String url2 = "/v3/api-docs/**";
-        String url3 = "user/**";
+        String url3 = "/user/**";
 
         http.httpBasic(AbstractHttpConfigurer::disable).csrf(AbstractHttpConfigurer::disable).formLogin(AbstractHttpConfigurer::disable).logout(AbstractHttpConfigurer::disable)
                 // 设置异常的EntryPoint，如果不设置，默认使用Http403ForbiddenEntryPoint
