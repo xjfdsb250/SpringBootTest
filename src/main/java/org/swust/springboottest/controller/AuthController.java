@@ -12,11 +12,13 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.swust.springboottest.config.JwtTokenProvider;
 import org.swust.springboottest.config.SecurityUserDetails;
 import org.swust.springboottest.entity.R;
+import org.swust.springboottest.service.ISysUserService;
 
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -36,6 +38,8 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
 
     private final JwtTokenProvider jwtTokenProvider;
+
+    private final ISysUserService userService;
 
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
@@ -82,6 +86,22 @@ public class AuthController {
         model.put("token", newToken);
         model.put("token_expiration", dateTimeFormatter.format(jwtTokenProvider.getTokenExpiration(newToken).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()));
         return R.ok(model);
+    }
+
+    /**
+     * 忘记密码
+     *
+     * @param name        用户名
+     * @param newPassword 新密码
+     * @return success/fail
+     */
+    @PutMapping("/forgetPassword")
+    public R<Boolean> forgetPassword(String name, String newPassword) {
+        boolean result = userService.forgetPassword(name, newPassword);
+        if (!result) {
+            return R.failed("重置密码失败");
+        }
+        return R.ok(true, "重置密码成功");
     }
 
 }

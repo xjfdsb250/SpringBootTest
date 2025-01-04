@@ -98,4 +98,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         return baseMapper.checkUserExist(name) > 0;
     }
 
+    @Override
+    public boolean forgetPassword(String name, String newPassword) {
+        String password = ENCODER.encode(newPassword);
+        return baseMapper.forgetPassword(name, password) > 0;
+    }
+
 }

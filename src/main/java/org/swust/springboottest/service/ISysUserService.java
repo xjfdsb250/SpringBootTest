@@ -38,4 +38,6 @@ public interface ISysUserService extends IService<SysUser> {
     SysUser getByName(String name);
 
     boolean checkUserExist(String name);
+
+    boolean forgetPassword(String name, String newPassword);
 }

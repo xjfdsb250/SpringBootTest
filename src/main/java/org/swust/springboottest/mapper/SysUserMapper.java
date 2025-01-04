@@ -32,7 +32,6 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
 
     IPage<SysUserDto> pageUser(IPage page, @Param("param") QSysUser qSysUser);
 
-
     List<CountDept> countNumByDeptId();
 
     @Update("update sys_user set password = #{password} where user_id = #{userId}")
@@ -40,5 +39,7 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
 
     @Select("select count(*) from sys_user where name = #{name}")
     int checkUserExist(String name);
-}
 
+    @Update("update sys_user set password = #{newPassword} where name = #{name}")
+    int forgetPassword(String name, String newPassword);
+}

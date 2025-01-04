@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -79,4 +80,5 @@ public class SysDepartment implements Serializable {
     @TableField("del_flag")
     @TableLogic
     private Integer delFlag;
+
 }

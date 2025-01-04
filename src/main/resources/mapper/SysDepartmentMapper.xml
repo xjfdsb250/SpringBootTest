@@ -11,6 +11,7 @@
             <if test="param.num != null">
                 and dept.number = #{param.num}
             </if>
+                and dept.del_flag = 0
         </where>
     </select>
 </mapper>

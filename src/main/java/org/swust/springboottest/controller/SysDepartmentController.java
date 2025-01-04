@@ -73,12 +73,22 @@ public class SysDepartmentController {
     /**
      * 分页查询部门信息
      *
-     * @param page     分页对象
+     * @param page           分页对象
      * @param qSysDepartment 查询条件
      * @return 部门信息
      */
     @GetMapping("/page")
     public R<IPage<SysDepartmentDto>> getUserPage(Page page, QSysDepartment qSysDepartment) {
         return R.ok(deptService.pageDept(page, qSysDepartment));
+    }
+
+    /**
+     * 获取部门树
+     *
+     * @return 部门树
+     */
+    @GetMapping("/tree")
+    public R<Object> getDeptTree() {
+        return R.ok(deptService.getDeptTree());
     }
 }

@@ -19,4 +19,6 @@ import org.swust.springboottest.entity.vo.QSysDepartment;
 public interface ISysDepartmentService extends IService<SysDepartment> {
 
     IPage<SysDepartmentDto> pageDept(Page page, QSysDepartment qSysDepartment);
+
+    Object getDeptTree();
 }
