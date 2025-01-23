@@ -2,8 +2,7 @@ package org.swust.springboottest.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.swust.springboottest.dto.SysDepartmentDto;
-import org.swust.springboottest.dto.SysUserDto;
+import org.swust.springboottest.entity.dto.SysDepartmentDto;
 import org.swust.springboottest.entity.SysDepartment;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.swust.springboottest.entity.vo.QSysDepartment;

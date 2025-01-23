@@ -1,4 +1,4 @@
-package org.swust.springboottest.dto;
+package org.swust.springboottest.entity.dto;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Getter;

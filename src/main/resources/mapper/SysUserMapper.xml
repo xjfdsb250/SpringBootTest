@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.swust.springboottest.mapper.SysUserMapper">
-    <select id="pageUser" resultType="org.swust.springboottest.dto.SysUserDto">
+    <select id="pageUser" resultType="org.swust.springboottest.entity.dto.SysUserDto">
         select u.*, dept.name dept_name, r.name role_name from sys_user u
         left join sys_department dept on u.dept_id = dept.dept_id
         left join sys_role r on u.role_id = r.role_id
@@ -25,7 +25,7 @@
         </where>
     </select>
 
-    <select id="countNumByDeptId" resultType="org.swust.springboottest.dto.CountDept">
+    <select id="countNumByDeptId" resultType="org.swust.springboottest.entity.dto.CountDept">
         select u.dept_id, count(*) count, dept.name dept_name
         from sys_user u
         left join sys_department dept

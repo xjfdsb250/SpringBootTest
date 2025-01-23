@@ -1,4 +1,4 @@
-package org.swust.springboottest.config;
+package org.swust.springboottest.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.AllArgsConstructor;
@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
+import org.swust.springboottest.config.SecurityUserDetails;
 import org.swust.springboottest.entity.SysUser;
-import org.swust.springboottest.service.ISysUserService;
 
 import java.util.ArrayList;
 

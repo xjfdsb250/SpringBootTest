@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import org.swust.springboottest.dto.SysDepartmentDto;
+import org.swust.springboottest.entity.dto.SysDepartmentDto;
 import org.swust.springboottest.entity.R;
 import org.swust.springboottest.entity.SysDepartment;
 import org.swust.springboottest.entity.vo.QSysDepartment;
